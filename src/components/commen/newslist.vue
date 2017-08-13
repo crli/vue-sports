@@ -11,7 +11,7 @@
           </div>
         </div>
 
-        <div class="videoitem" v-else-if="item.type=='phvideo'">
+        <div class="videoitem" v-else-if="item.type=='phvideo'" @click='toVideo(item.id)'>
           <div class="title">{{item.title}}</div>
           <div class="video">
             <img :src="item.thumbnail" class="img"/>
@@ -64,7 +64,10 @@ export default {
     },
     toCarousel(url){
       this.$emit('toCarousel',dealurl(url))
-    }
+    },
+    toVideo(url){
+      this.$emit('toVideo',dealurl(url))
+    },
   }
 }
 </script>

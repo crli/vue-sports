@@ -18,9 +18,10 @@
 
     <section class="project-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="20">
       <newslist
-      :newslist="news.item"
-      @toCarousel="toCarousel"
-      @toArticle="toArticle">
+      :newslist = "news.item"
+      @toCarousel = "toCarousel"
+      @toArticle = "toArticle"
+      @toVideo = "toVideo">
       </newslist>
     </section>
 
@@ -107,6 +108,9 @@ export default {
     toArticle(params){
       this.$router.push('/home/article?'+params)
     },
+    toVideo(params){
+      this.$router.push('/home/video?'+params)
+    }
   },
 
   directives: {infiniteScroll},
