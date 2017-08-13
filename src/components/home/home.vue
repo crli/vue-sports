@@ -4,7 +4,7 @@
     <swiper :options="swiperOption" class="swiper-wrap" v-if="swiper.length">
       <swiper-slide v-for="(item,index) in swiper" :key="index"  v-if="item.type!='web'">
         <span class="title">{{item.title}}</span>
-        <img :src="item.thumbnail" alt="" />
+        <img :src="item.thumbnail" alt="" @click="toCarousel(item.id)"/>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination" v-if="swiper.length>1"></div>
     </swiper>
@@ -17,7 +17,7 @@
     </section>
 
     <section class="project-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="20">
-      <newslist :newslist="news.item"></newslist>
+      <newslist :newslist="news.item" @toCarousel="toCarousel"></newslist>
     </section>
 
     <loading :loadernone="loadernone"></loading>
@@ -37,6 +37,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import infiniteScroll from 'vue-infinite-scroll'
 import {iclienturl} from '@/config/env'
 import {getnews} from '@/service/getData'
+import {dealurl} from '@/config/mUtils'
 export default {
   name: 'home',
   data () {
@@ -92,6 +93,13 @@ export default {
       }
       this.busy = false;
     },
+    toCarousel(params){
+      if(params.indexOf(".com/")>0){
+        this.$router.push('/home/carousel?'+dealurl(params))
+      }else{
+        this.$router.push('/home/carousel?'+params)
+      }
+    }
   },
 
   directives: {infiniteScroll},
@@ -109,6 +117,7 @@ export default {
   height: 4.8rem;
   width: 100%;
   position: relative;
+  z-index: 0!important;
   img {
     height: 100%;
     width: 100%;

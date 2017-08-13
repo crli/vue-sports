@@ -34,6 +34,20 @@ module.exports = {
         pathRewrite: {
           '^/iclient': ''
         }
+      },
+      '/ifeng3g': {
+        target: 'https://api.3g.ifeng.com/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/ifeng3g': ''
+        }
+      },
+      '/comment': {
+        target: 'http://comment.ifeng.com/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/comment': ''
+        }
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

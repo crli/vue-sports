@@ -1,7 +1,7 @@
 <template>
   <section class="newslist">
     <div class="project" v-for="(item,index) in newslist" >
-        <div class="newsitem" v-if="item.type=='doc'">
+        <div class="newsitem" v-if="item.type=='doc'" @click='toArticle(item.id)'>
           <img v-if="item.thumbnail" :src="item.thumbnail" class="img"/>
           <div v-else class="none">暂无图片</div>
           <div class="cont">
@@ -19,7 +19,7 @@
           </div>
         </div>
 
-        <div class="newslide" v-else-if="item.type=='slide'">
+        <div class="newslide" v-else-if="item.type=='slide'" @click='toCarousel(item.id)'>
           <div class="title">{{item.title}}</div>
           <div class="imgbox">
             <img v-for="img in item.style.images" class="img" :src="img"/>
@@ -36,13 +36,13 @@
             <span class="commentnum">{{item.commentsall}}</span>
           </div>
         </div>
-
     </div>
   </section>
 
 </template>
 
 <script>
+import {dealurl} from '@/config/mUtils'
 export default {
   name: 'newslist',
   data () {
@@ -59,7 +59,11 @@ export default {
     },
   },
   methods: {
-
+    toArticle(url){
+    },
+    toCarousel(url){
+      this.$emit('toCarousel',dealurl(url))
+    }
   }
 }
 </script>
