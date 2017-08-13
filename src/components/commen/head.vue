@@ -49,6 +49,7 @@
       height:1.093333rem;
       text-align: center;
       color:#fff;
+      @include ellipsis(1);
       @include font-dpr(16px);
     }
   }

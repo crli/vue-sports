@@ -8,3 +8,5 @@ export const getnews = (id,page,gv) => axios.post(iclienturl+'ClientNews?id='+id
 export const getcarousel = (url) => axios.get(ifeng3gurl+url)
 // 热评
 export const hotcomment = (page,url) => axios.get(commenturl+'/get?job=1&orderby=uptimes&order=DESC&p='+page+'&docurl='+url)
+//新闻文章&&专题
+export const getarticle = (url) => axios.post(iclienturl+url)

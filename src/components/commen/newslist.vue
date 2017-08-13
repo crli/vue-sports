@@ -60,6 +60,7 @@ export default {
   },
   methods: {
     toArticle(url){
+      this.$emit('toArticle',dealurl(url))
     },
     toCarousel(url){
       this.$emit('toCarousel',dealurl(url))

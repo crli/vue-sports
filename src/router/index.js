@@ -4,6 +4,7 @@ import App from '../App'
 
 var home = r => require.ensure([], () => r(require('@/components/home/home')), 'home')
 var carousel = r => require.ensure([], () => r(require('@/components/carousel/carousel')), 'carousel')
+var article = r => require.ensure([], () => r(require('@/components/article/article')), 'article')
 Vue.use(Router)
 
 const routes = [
@@ -22,7 +23,11 @@ const routes = [
         {
           path: 'carousel',
           component: carousel,
-        }
+        },
+        {
+          path: 'article',
+          component: article,
+        },
         ]
       }
       ]

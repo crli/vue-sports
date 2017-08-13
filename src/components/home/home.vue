@@ -17,7 +17,11 @@
     </section>
 
     <section class="project-list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="20">
-      <newslist :newslist="news.item" @toCarousel="toCarousel"></newslist>
+      <newslist
+      :newslist="news.item"
+      @toCarousel="toCarousel"
+      @toArticle="toArticle">
+      </newslist>
     </section>
 
     <loading :loadernone="loadernone"></loading>
@@ -99,7 +103,10 @@ export default {
       }else{
         this.$router.push('/home/carousel?'+params)
       }
-    }
+    },
+    toArticle(params){
+      this.$router.push('/home/article?'+params)
+    },
   },
 
   directives: {infiniteScroll},

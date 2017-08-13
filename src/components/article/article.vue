@@ -1,0 +1,92 @@
+<template>
+  <div class="carousel">
+    <headTop :headTitle="titleName"></headTop>
+    <div class="box">
+      <div class="article">
+        <div class="title">{{datas.title}}</div>
+        <div class="sourcetime">
+          <span>{{datas.updateTime}}</span><span class="source">{{datas.source}}</span>
+        </div>
+        <div class="content htmlbox" v-html="datas.text">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</template>
+
+<script>
+  import headTop from '@/components/commen/head'
+  import {iclienturl} from '@/config/env'
+  import {getarticle} from '@/service/getData'
+  export default {
+  name: 'article',
+  data () {
+    return {
+      titleName:'文章',
+      datas:{}
+    }
+  },
+  created(){
+    document.body.setAttribute("class","hid");
+    this.init();
+  },
+  destroyed(){
+    document.body.removeAttribute("class","hid");
+  },
+  methods: {
+    async init() {
+      let response = await getarticle(this.$route.query.type);
+      this.datas = response.data.body;
+    },
+  },
+  components:{headTop}
+}
+</script>
+
+<style scoped lang="scss">
+@import '../../style/mixin';
+
+.carousel{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 0;
+  background-color: #fff;
+  overflow: auto;
+  .box{
+    width:100%;
+    height:100%;
+    overflow: auto;
+    padding-top: 1.093333rem;
+  }
+  .title, .sourcetime{
+    padding: 0 0.266667rem;
+  }
+  .title{
+    @include font-dpr(17px);
+    font-weight: bold;
+  }
+  .sourcetime{
+    @include font-dpr(12px);
+    color: #666;
+    margin: 0.266667rem 0;
+    .source{
+      margin-left: 0.133333rem
+    }
+  }
+  .content{
+    padding: 0 0.133333rem;
+    margin:0 0.066667rem;
+    @include font-dpr(15px);
+    color:#666;
+    line-height:1.6;
+  }
+
+
+}
+
+</style>
