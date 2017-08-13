@@ -8,6 +8,7 @@ import 'mint-ui/lib/style.css'
 import './style/swiper.min.css'
 
 
+
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function() {
     FastClick.attach(document.body);
