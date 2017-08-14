@@ -18,8 +18,8 @@
 
 <script>
   import headTop from '@/components/commen/head'
-  import {iclienturl} from '@/config/env'
   import {getarticle} from '@/service/getData'
+  import {getUrl} from '@/config/mUtils'
   export default {
   name: 'article',
   data () {
@@ -37,7 +37,7 @@
   },
   methods: {
     async init() {
-      let response = await getarticle(this.$route.query.type);
+      let response = await getarticle(getUrl(this.$route.query));
       this.datas = response.data.body;
     },
   },

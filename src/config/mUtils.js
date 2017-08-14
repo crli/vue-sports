@@ -104,3 +104,12 @@ export const dealurl = (url) => {
     return 'video=' + url
   }
 }
+export const getUrl = (obj) => {
+  let type = obj.type;
+  delete obj.type;
+  let otherParams = '';
+  for(var i in obj){
+    otherParams += "&"+ i +"=" + obj[i]
+  }
+  return type + otherParams
+}

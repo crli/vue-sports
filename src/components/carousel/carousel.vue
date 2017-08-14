@@ -30,7 +30,6 @@
   import headTop from '@/components/commen/head'
   import VueAwesomeSwiper from 'vue-awesome-swiper'
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
-  import {ifeng3gurl} from '@/config/env'
   import {getcarousel,hotcomment} from '@/service/getData'
   export default {
   name: 'carousel',
@@ -48,7 +47,7 @@
         paginationClickable: true,
         spaceBetween: 30,
         centeredSlides: true,
-        autoplay: 3111000,
+        autoplay: 3000,
         perspective:15,
         autoplayDisableOnInteraction: false,
         notNextTick: true,

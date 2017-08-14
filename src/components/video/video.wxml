@@ -1,3 +1,0 @@
-<div class="videobox">
-  <video src="{{type}}"></video>
-</div>

@@ -9,8 +9,8 @@
       <div class="swiper-pagination" slot="pagination" v-if="swiper.length>1"></div>
     </swiper>
 
-    <section class="topic">
-      <div class="category" v-for="(item,index) in topic.item">
+    <section class="topicbox">
+      <div class="category" v-for="(item,index) in topic.item" @click="toTopic(item.id)">
         <img :src="item.thumbnail" />
         <span class="title">{{item.title}}</span>
       </div>
@@ -40,7 +40,6 @@ import loading from '@/components/commen/loading'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import infiniteScroll from 'vue-infinite-scroll'
-import {iclienturl} from '@/config/env'
 import {getnews} from '@/service/getData'
 import {dealurl} from '@/config/mUtils'
 export default {
@@ -110,7 +109,10 @@ export default {
     },
     toVideo(params){
       this.$router.push('/home/video?'+params)
-    }
+    },
+    toTopic(params){
+      this.$router.push('/home/topic?'+dealurl(params))
+    },
   },
 
   directives: {infiniteScroll},
@@ -128,7 +130,7 @@ export default {
   height: 4.8rem;
   width: 100%;
   position: relative;
-  z-index: 0!important;
+
   img {
     height: 100%;
     width: 100%;
@@ -141,7 +143,7 @@ export default {
       color: #fff;
   }
 }
-.topic{
+.topicbox{
   padding: 0 0.266667rem;
   margin: 0.533333rem 0 0.133333rem;
   display: flex;
