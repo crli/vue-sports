@@ -1,18 +1,18 @@
 <template>
-  <div class="topic">
-    <headTop :headTitle="titleName"></headTop>
-    <div class="box">
-      <template v-for="(item ,index) in subjects">
+  <div class="topic" >
+    <headTop :headTitle="titleName" class="zindex1"></headTop>
+    <div class="box"id="topicid">
+      <div v-for="(item ,index) in subjects">
 
         <div class="mutiTitle" v-if="item.view=='multiTitle'">
           <img :src="item.content.bgImage"/>
         </div>
 
-        <div class="text" v-if="item.view=='text'">
+        <div class="text" v-else-if="item.view=='text'">
           <span>{{item.content.intro}}</span>
         </div>
 
-        <div class="slider" v-if="item.view=='slider'">
+        <div class="slider" v-else-if="item.view=='slider'">
           <swiper :options="swiperOption" class="swiper swiper-wrap">
             <swiper-slide v-for="(ele,i) in item.podItems" :key="i">
               <span class="title">{{ele.title}}</span>
@@ -21,11 +21,23 @@
           </swiper>
         </div>
 
+        <div class="newslist" v-else >
+          <topiclist
+            :topiclist = "item"
+            :index = 'index'
+            @toCarousel = "toCarousel"
+            @toArticle = "toArticle"
+            @toVideo = "toVideo">
+          </topiclist>
+        </div>
         <div class="subtitle" v-if="index == 2" >
-          <span class="subnav" v-for="(ele,j) in havetitle" @click="toitem(j)">{{ele.title}}</span>
+          <a href="javascript:;" class="subnav" v-for="ele in havetitle" @click="toitem('item-'+ele.i)">{{ele.title}}</a>
         </div>
 
-      </template>
+      </div>
+      <transition name="backtop">
+        <div class="to-top" @click="backTop" v-if="showBackStatus"></div>
+      </transition>
       <transition name="router-slide">
         <router-view></router-view>
       </transition>
@@ -35,11 +47,12 @@
 </template>
 
 <script>
+  import topiclist from '@/components/commen/topiclist'
   import headTop from '@/components/commen/head'
   import VueAwesomeSwiper from 'vue-awesome-swiper'
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
   import {getarticle} from '@/service/getData'
-  import {getUrl,dealurl} from '@/config/mUtils'
+  import {getUrl,dealurl,animate,getOuterHeight,showBack} from '@/config/mUtils'
   export default {
   name: 'topic',
   data () {
@@ -56,60 +69,65 @@
         autoplayDisableOnInteraction: false,
         notNextTick: true
       },
+      showBackStatus:false
     }
   },
   created(){
-    document.body.setAttribute("class","hid");
     this.init();
   },
-  destroyed(){
-    document.body.removeAttribute("class","hid");
+  mounted(){
+    showBack(status => {
+      this.showBackStatus = status;
+    })
   },
+
   methods: {
     async init() {
 
       let response = await getarticle(getUrl(this.$route.query));
 
       this.subjects = response.data.body.subjects;
-
+      this.subjects.forEach((ele,index)=>{
+        ele.i = index
+      })
       this.havetitle = this.subjects.filter((ele)=>{
         return ele.title
       })
     },
 
     toitem(id){
-      console.log(id)
+      var anchor = document.getElementById(id);
+      animate(document.body, {scrollTop: anchor.offsetTop - getOuterHeight(anchor)}, 300,'ease-out');
     },
 
     toCarousel(params){
       if(params.indexOf(".com/")>0){
-        this.$router.push('/home/topic/carousel?'+dealurl(params))
+        this.$router.push('/topic/carousel?'+dealurl(params))
       }else{
-        this.$router.push('/home/topic/carousel?'+params)
+        this.$router.push('/topic/carousel?'+params)
       }
     },
 
     toArticle(params){
-      this.$router.push('/home/article?'+params)
+      this.$router.push('/topic/article?'+params)
     },
 
     toVideo(params){
-      this.$router.push('/home/video?'+params)
-    }
+      this.$router.push('/topic/video?'+params)
+    },
+    backTop(){
+      animate(document.body, {scrollTop: '0'}, 400,'ease-out');
+    },
   },
-  components:{swiper, swiperSlide,headTop}
+
+  components:{swiper, swiperSlide,headTop,topiclist}
 }
 </script>
 
 <style scoped lang="scss">
 @import '../../style/mixin';
+
 .topic{
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  z-index: 0;
   background-color: #fff;
   overflow: auto;
   .box{
@@ -123,7 +141,7 @@
   width: 100%;
     img{
       width: 100%;
-      height: 2.666667rem;
+      height: 2rem;
   }
 }
 .text{
@@ -161,5 +179,16 @@
     color:#FF7256;
   }
 }
-
+.to-top{
+  position: fixed;
+  top: 80%;
+  left: 90%;
+  transform: translate(-80%, -90%);
+  width:1rem;
+  height:1rem;
+  background:url('../../assets/img/top.png')no-repeat;
+  background-size: 100% 100%;
+  background-color: #fff;
+  border-radius: 1rem;
+}
 </style>

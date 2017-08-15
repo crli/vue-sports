@@ -34,26 +34,26 @@ const routes = [
           path: 'video',
           component: video,
         },
-        {
-          path: 'topic',
-          component: topic,
-          children:[
-          {
-            path: 'carousel',
-            component: carousel,
-          },
-          {
-            path: 'article',
-            component: article,
-          },
-          {
-            path: 'video',
-            component: video,
-          }
-          ]
-        },
         ]
-      }
+      },
+      {
+        path: '/topic',
+        component: topic,
+        children:[
+        {
+          path: 'carousel',
+          component: carousel,
+        },
+        {
+          path: 'article',
+          component: article,
+        },
+        {
+          path: 'video',
+          component: video,
+        }
+        ]
+      },
       ]
     }
 ];

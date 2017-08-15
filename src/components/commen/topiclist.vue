@@ -1,41 +1,37 @@
 <template>
-  <section class="newslist">
-    <div class="project" v-for="(item,index) in newslist" >
-        <div class="newsitem" v-if="item.type=='doc'" @click='toArticle(item.id)'>
-          <img v-if="item.thumbnail" :src="item.thumbnail" class="img"/>
-          <div v-else class="none">暂无图片</div>
-          <div class="cont">
-            <span>{{item.title}}</span>
-            <span class="time">{{item.updateTime}}</span>
-            <span class="commentnum">{{item.commentsall}}</span>
-          </div>
-        </div>
+  <section class="topiclist">
+  <span class="itemtitle" :id="'item-'+index">{{topiclist.title}}</span>
+    <div class="project" v-for="(item,index) in topiclist.podItems" >
 
-        <div class="videoitem" v-else-if="item.type=='phvideo'" @click='toVideo(item.id)'>
-          <div class="title">{{item.title}}</div>
-          <div class="video">
-            <img :src="item.thumbnail" class="img"/>
-            <span class="commentnum">{{item.commentsall}}</span>
-          </div>
+      <div class="newsitem" v-if="item.links[0].type == 'doc'" @click='toArticle(item.id ? item.id : item.links[0].url)'>
+        <img v-if="item.thumbnail" :src="item.thumbnail" class="img"/>
+        <div v-else class="none">暂无图片</div>
+        <div class="cont">
+          <span>{{item.title}}</span>
+          <span class="time">{{item.updateTime}}</span>
+          <span class="commentnum">{{item.commentCount}}</span>
         </div>
+      </div>
 
-        <div class="newslide" v-else-if="item.type=='slide'" @click='toCarousel(item.id)'>
-          <div class="title">{{item.title}}</div>
-          <div class="imgbox">
-            <img v-for="img in item.style.images" class="img" :src="img"/>
-          </div>
-          <span class="commentnum">{{item.commentsall}}</span>
+      <div class="newslide" v-else-if="item.links[0].type == 'slide'" @click='toCarousel(item.id ? item.id : item.links[0].url)'>
+        <div class="title">{{item.title}}</div>
+        <div class="imgbox">
+          <img v-for="img in item.thumbnails" class="img" :src="img"/>
         </div>
+        <span class="commentnum">{{item.commentCount}}</span>
+      </div>
 
-        <div class="newsitem" v-if="item.type=='topic2'" @click='toTopic(item.id)'>
-          <img v-if="item.thumbnail" :src="item.thumbnail" class="img" />
-          <div v-else class="none">暂无图片</div>
-          <div class="cont">
-            <span>{{item.title}}</span>
-            <span class="subtopic">专题</span>
-            <span class="commentnum">{{item.commentsall}}</span>
-          </div>
+      <div class="newsitem" v-if="item.links[0].type == 'video'" @click='toVideo(item.mp4 ? item.mp4 : item.links[0].url)'>
+        <div class="video">
+          <img v-if="item.thumbnail" :src="item.thumbnail" class="img video"/>
         </div>
+        <div class="cont">
+          <span>{{item.title}}</span>
+          <span class="time">{{item.updateTime}}</span>
+          <span class="commentnum">{{item.commentCount}}</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -44,19 +40,22 @@
 <script>
 import {dealurl} from '@/config/mUtils'
 export default {
-  name: 'newslist',
+  name: 'topiclist',
   data () {
     return {
 
     }
   },
   props: {
-    newslist: {
-        type: Array,
+    topiclist: {
+        type: Object,
         default: function () {
-          return []
+          return {}
         }
     },
+    index:{
+      type: Number,
+    }
   },
   methods: {
     toArticle(url){
@@ -67,9 +66,6 @@ export default {
     },
     toVideo(url){
       this.$emit('toVideo',dealurl(url))
-    },
-    toTopic(url){
-      this.$emit('toTopic',url)
     },
   }
 }
@@ -206,5 +202,12 @@ export default {
     @include font-dpr(12px);
   }
 }
-
+.itemtitle{
+  display: block;
+  margin: 0.266667rem;
+  padding-bottom: 0.266667rem;
+  @include font-dpr(18px);
+  border-bottom: 1px solid #eee;
+  color: #FF7256
+}
 </style>

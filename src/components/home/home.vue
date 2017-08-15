@@ -21,11 +21,16 @@
       :newslist = "news.item"
       @toCarousel = "toCarousel"
       @toArticle = "toArticle"
-      @toVideo = "toVideo">
+      @toVideo = "toVideo"
+      @toTopic = "toTopic">
       </newslist>
     </section>
 
     <loading :loadernone="loadernone"></loading>
+
+    <transition name="backtop">
+      <div class="to-top" @click="backTop" v-if="showBackStatus"></div>
+    </transition>
 
     <transition name="router-slide">
       <router-view></router-view>
@@ -41,7 +46,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import infiniteScroll from 'vue-infinite-scroll'
 import {getnews} from '@/service/getData'
-import {dealurl} from '@/config/mUtils'
+import {dealurl,showBack,animate} from '@/config/mUtils'
 export default {
   name: 'home',
   data () {
@@ -62,12 +67,17 @@ export default {
         autoplayDisableOnInteraction: false,
         notNextTick: true
       },
+      showBackStatus:false
     }
   },
   created(){
     this.init();
   },
-
+  mounted(){
+    showBack(status => {
+      this.showBackStatus = status;
+    })
+  },
   methods: {
     async init() {
       let response = await getnews('TY43,FOCUSTY43,TYTOPIC',this.page++,'5.4.0');
@@ -111,7 +121,10 @@ export default {
       this.$router.push('/home/video?'+params)
     },
     toTopic(params){
-      this.$router.push('/home/topic?'+dealurl(params))
+      this.$router.push('/topic?'+dealurl(params))
+    },
+    backTop(){
+      animate(document.body, {scrollTop: '0'}, 400,'ease-out');
     },
   },
 
@@ -162,5 +175,16 @@ export default {
     @include font-dpr(16px)
   }
 }
-
+.to-top{
+  position: fixed;
+  top: 80%;
+  left: 90%;
+  transform: translate(-80%, -90%);
+  width:1rem;
+  height:1rem;
+  background:url('../../assets/img/top.png')no-repeat;
+  background-size: 100% 100%;
+  background-color: #fff;
+  border-radius: 1rem;
+}
 </style>

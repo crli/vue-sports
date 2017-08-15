@@ -146,3 +146,13 @@ input,input:focus,input:active{user-select: text;}
 .swiper-wrap{
     z-index: 0!important;
 }
+.zindex1{
+  z-index: 1!important;
+}
+
+.backtop-enter-active, .backtop-leave-active {
+  transition: opacity .5s
+}
+.backtop-enter, .backtop-leave-active {
+  opacity: 0
+}

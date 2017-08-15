@@ -29,7 +29,7 @@
   .head-other{
     background:#000;
     position: fixed;
-    z-index: 3;
+    z-index: 0;
     left: 0;
     top: 0;
     @include wh(100%, 1.093333rem);

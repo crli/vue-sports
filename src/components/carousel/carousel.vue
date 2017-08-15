@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel">
+  <div class="carousel":class="this.$route.path.indexOf('topic')>0?'zindex1':''">
     <headTop :headTitle="titleName"></headTop>
     <div class="box">
 
@@ -62,7 +62,11 @@
     this.init();
   },
   destroyed(){
-    document.body.removeAttribute("class","hid");
+    let path = this.$route.path;
+    if(path =='/home'||path =='/topic'){
+      document.body.removeAttribute("class","hid");
+    }
+
   },
   methods: {
     async init() {
@@ -89,7 +93,6 @@
 
 <style scoped lang="scss">
 @import '../../style/mixin';
-
 .carousel{
   position: fixed;
   top: 0px;
@@ -167,7 +170,7 @@
     }
     .carouselbox {
       width: 100%;
-      height: 100%;
+      height: 100%;z-index: 1;
       .carousel-item{
         height: 100%;
         display: flex;

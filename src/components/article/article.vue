@@ -1,6 +1,6 @@
 <template>
-  <div class="carousel">
-    <headTop :headTitle="titleName"></headTop>
+  <div class="wrap":class="this.$route.path.indexOf('topic')>0?'zindex1':''">
+    <headTop :headTitle="titleName" class="zindex1"></headTop>
     <div class="box">
       <div class="article">
         <div class="title">{{datas.title}}</div>
@@ -48,7 +48,7 @@
 <style scoped lang="scss">
 @import '../../style/mixin';
 
-.carousel{
+.wrap{
   position: fixed;
   top: 0px;
   left: 0px;
@@ -57,11 +57,13 @@
   z-index: 0;
   background-color: #fff;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
   .box{
     width:100%;
     height:100%;
     overflow: auto;
     padding-top: 1.093333rem;
+    -webkit-overflow-scrolling: touch;
   }
   .title, .sourcetime{
     padding: 0 0.266667rem;
