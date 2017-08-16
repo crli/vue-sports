@@ -1,5 +1,5 @@
 <template>
-  <section class="topiclist">
+  <section class="topiclist" :id="'list-'+index">
   <span class="itemtitle" :id="'item-'+index">{{topiclist.title}}</span>
     <div class="project" v-for="(item,index) in topiclist.podItems" >
 
@@ -204,10 +204,10 @@ export default {
 }
 .itemtitle{
   display: block;
-  margin: 0.266667rem;
-  padding-bottom: 0.266667rem;
-  @include font-dpr(18px);
+  margin: 0 0.266667rem;
+  line-height: 1.2rem;
+  font-size: 18px;
   border-bottom: 1px solid #eee;
-  color: #FF7256
+  color: #FF7256;
 }
 </style>

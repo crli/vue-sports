@@ -97,7 +97,14 @@
 
     toitem(id){
       var anchor = document.getElementById(id);
-      animate(document.body, {scrollTop: anchor.offsetTop - getOuterHeight(anchor)}, 300,'ease-out');
+      let ele = document.getElementById('list-' + id.split("-")[1]);
+      let eleHeight = getOuterHeight(ele);
+      let clientHeight = document.documentElement.clientHeight;
+      let top = anchor.offsetTop - getOuterHeight(anchor)
+      if(eleHeight<clientHeight){
+        top = top - (clientHeight - eleHeight)
+      }
+      animate(document.body, {scrollTop: top}, 300,'ease-out');
     },
 
     toCarousel(params){
@@ -120,7 +127,14 @@
     },
   },
 
-  components:{swiper, swiperSlide,headTop,topiclist}
+  components:{swiper, swiperSlide,headTop,topiclist},
+  watch:{
+    '$route' (to, from) {
+      if(to.path == '/topic'){
+       document.body.scrollTop = 0
+      }
+    }
+  }
 }
 </script>
 

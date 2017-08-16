@@ -1,5 +1,10 @@
 <template>
-  <router-view></router-view>
+  <!-- <router-view></router-view> -->
+  <div>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
+  </div>
 </template>
 
 <script>

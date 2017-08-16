@@ -16,15 +16,18 @@
   data () {
     return {
       titleName:'视频',
-      type:''
+      type:'',
+      y:0
     }
   },
   created(){
-    document.body.setAttribute("class","hid");
     this.init();
+    this.y = document.body.scrollTop
+    document.body.setAttribute("class","hid");
   },
   destroyed(){
     document.body.removeAttribute("class","hid");
+    document.body.scrollTop = this.y
   },
   methods: {
     async init() {
@@ -37,7 +40,8 @@
       }
     },
   },
-  components:{headTop}
+  components:{headTop},
+
 }
 </script>
 

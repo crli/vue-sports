@@ -20,7 +20,7 @@ window.onload=function () {
         if(event.touches.length>1){
             event.preventDefault();
         }
-    })
+    },{passive:true})
     var lastTouchEnd=0;
     document.addEventListener('touchend',function (event) {
         var now=(new Date()).getTime();

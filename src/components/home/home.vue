@@ -31,10 +31,10 @@
     <transition name="backtop">
       <div class="to-top" @click="backTop" v-if="showBackStatus"></div>
     </transition>
-
-    <transition name="router-slide">
+<transition name="router-slide">
       <router-view></router-view>
     </transition>
+
   </div>
 
 </template>
@@ -121,6 +121,7 @@ export default {
       this.$router.push('/home/video?'+params)
     },
     toTopic(params){
+
       this.$router.push('/topic?'+dealurl(params))
     },
     backTop(){

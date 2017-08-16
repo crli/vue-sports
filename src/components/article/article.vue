@@ -25,15 +25,18 @@
   data () {
     return {
       titleName:'文章',
-      datas:{}
+      datas:{},
+      y:0
     }
   },
   created(){
-    document.body.setAttribute("class","hid");
     this.init();
+    this.y = document.body.scrollTop
+    document.body.setAttribute("class","hid");
   },
   destroyed(){
     document.body.removeAttribute("class","hid");
+    document.body.scrollTop = this.y
   },
   methods: {
     async init() {
@@ -41,7 +44,8 @@
       this.datas = response.data.body;
     },
   },
-  components:{headTop}
+  components:{headTop},
+
 }
 </script>
 

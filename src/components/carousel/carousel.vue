@@ -55,16 +55,19 @@
           this.changeSlide(swiper.realIndex)
         }
       },
+      y:0
     }
   },
   created(){
-    document.body.setAttribute("class","hid");
     this.init();
+    this.y = document.body.scrollTop
+    document.body.setAttribute("class","hid");
   },
   destroyed(){
     let path = this.$route.path;
     if(path =='/home'||path =='/topic'){
       document.body.removeAttribute("class","hid");
+      document.body.scrollTop = this.y
     }
 
   },
@@ -87,7 +90,8 @@
       this.description = this.slides[index].description
     }
   },
-  components:{swiper, swiperSlide,headTop}
+  components:{swiper, swiperSlide,headTop},
+
 }
 </script>
 

@@ -87,7 +87,7 @@ a.router-link-active span{
     transition: all .4s;
 }
 .router-slide-enter, .router-slide-leave-active {
-    transform: translateX(100%);opacity: 0;
+    transform: translateX(100%);
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -101,6 +101,10 @@ input,input:focus,input:active{user-select: text;}
 .mint-indicator-wrapper{
   z-index: 10000
 }
+.mint-indicator{
+  transition: opacity 0s linear!important;
+}
+
 .mint-toast-text {
     color: #fff;
 }
@@ -128,8 +132,7 @@ input,input:focus,input:active{user-select: text;}
   width: 0.8rem;
   height: 0.8rem;
   border-radius: 50%;
-  background: #000;
-  opacity: .7;
+  background: rgba(0,0,0,.7);
   left: 50%;
   top: 50%;
   margin-left: -0.4rem;
@@ -147,7 +150,7 @@ input,input:focus,input:active{user-select: text;}
     z-index: 0!important;
 }
 .zindex1{
-  z-index: 1!important;
+  z-index: 2!important;
 }
 
 .backtop-enter-active, .backtop-leave-active {
