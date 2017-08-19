@@ -3,7 +3,7 @@
     <headTop :headTitle="titleName"></headTop>
     <div class="box">
 
-      <div class="comment">
+      <div class="comment" @click='toComment'>
         <span class="num">{{commentnum}}</span>
         <div class="border-dian"><div class="dian"></div></div>
       </div>
@@ -22,6 +22,9 @@
         <div class="description"><span>{{description}}</span></div>
       </div>
     </div>
+    <transition name="router-slide">
+      <router-view></router-view>
+    </transition>
   </div>
 
 </template>
@@ -88,7 +91,15 @@
     changeSlide(index){
       this.current = index+1;
       this.description = this.slides[index].description
-    }
+    },
+    toComment(){
+      if(this.$route.path.indexOf("home")>0){
+        this.$router.push('/home/carousel/comment?title='+this.title+'&url='+this.commentsUrl)
+      }else{
+        this.$router.push('/topic/carousel/comment?title='+this.title+'&url='+this.commentsUrl)
+      }
+
+    },
   },
   components:{swiper, swiperSlide,headTop},
 
@@ -103,7 +114,7 @@
   left: 0px;
   right: 0px;
   bottom: 0px;
-  z-index: 0;
+  z-index: 2;
   background-color: #000;
   overflow: auto;
   .box{
@@ -169,7 +180,7 @@
         }
       }
       .num{
-        margin: 0.266667rem;
+        margin: 0 0.266667rem;
       }
     }
     .carouselbox {
@@ -194,7 +205,7 @@
 
       color: #fff;
       background: rgba(0,0,0,.3);
-      z-index: 10;
+      z-index: 1;
       .title{
         display: flex;
         justify-content: space-between;

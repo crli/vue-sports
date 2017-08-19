@@ -12,3 +12,5 @@ export const hotcomment = (page,url) => axios.get(commenturl+'/get?job=1&orderby
 export const getarticle = (url) => axios.post(iclienturl+url)
 //首页新闻视频
 export const videoitem = (guid) => axios.post(iclienturl+'api_phoenixtv_details?guid='+guid)
+// 最新评论
+export const newcomment = (page,url) => axios.post(commenturl+ '/get?job=1&order=DESC&orderBy=create_time&p='+page+'&docurl='+url)

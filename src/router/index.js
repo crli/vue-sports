@@ -7,6 +7,7 @@ var carousel = r => require.ensure([], () => r(require('@/components/carousel/ca
 var article = r => require.ensure([], () => r(require('@/components/article/article')), 'article')
 var video = r => require.ensure([], () => r(require('@/components/video/video')), 'video')
 var topic = r => require.ensure([], () => r(require('@/components/topic/topic')), 'topic')
+var comment = r => require.ensure([], () => r(require('@/components/comment/comment')), 'comment')
 Vue.use(Router)
 
 const routes = [
@@ -25,6 +26,12 @@ const routes = [
         {
           path: 'carousel',
           component: carousel,
+          children:[
+          {
+            path: 'comment',
+            component: comment,
+          }
+          ]
         },
         {
           path: 'article',

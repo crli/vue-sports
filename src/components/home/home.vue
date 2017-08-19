@@ -72,6 +72,7 @@ export default {
   },
   created(){
     this.init();
+    console.log(window.document.documentElement.getAttribute('data-dpr'))
   },
   mounted(){
     showBack(status => {
