@@ -14,5 +14,6 @@ module.exports = {
     source: 'src',
     img: 'src',
     image: 'xlink:href'
-  }
+  },
+  postcss:[require('postcss-px2rem')({'remUnit':75,'baseDpr':1})]
 }

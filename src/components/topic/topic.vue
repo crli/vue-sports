@@ -161,7 +161,7 @@
 .text{
   margin: 0.8rem;
   display: block;
-  @include font-dpr(16px);
+  font-size:16px; /*px*/;
 }
 
 .swiper {
@@ -176,7 +176,7 @@
       position: absolute;
       bottom: 0px;
       left: 0.266667rem;
-      @include font-dpr(18px);
+      font-size:18px; /*px*/;
       color: #fff;
   }
 }
@@ -187,7 +187,7 @@
     display:inline-block;
     padding: 0.133333rem 0.266667rem;
     border: 1px solid #eee;
-    @include font-dpr(14px);
+    font-size:14px; /*px*/;
     margin: 0.133333rem ;
     border-radius: 0.266667rem;
     color:#FF7256;

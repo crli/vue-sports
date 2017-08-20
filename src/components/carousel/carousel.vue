@@ -129,7 +129,7 @@
       top: 1.093333rem;
       display: flex;
       align-items: center;
-      @include font-dpr(15px)
+      font-size:15px; /*px*/
       z-index: 2;
       width: 100%;
       flex-direction: row-reverse;
@@ -212,7 +212,7 @@
       }
       .currenttitle{
         flex: 1;
-        @include font-dpr(16px);
+        font-size:16px; /*px*/
       }
       .currentnum{
         width: 1.066667rem;
@@ -220,7 +220,7 @@
       }
       .description{
         padding: 0.266667rem 0;
-        @include font-dpr(14px);
+        font-size:14px; /*px*/
         color: #eee;
         overflow-y: auto;
         height: 4.266667rem

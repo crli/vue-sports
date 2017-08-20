@@ -10,17 +10,19 @@ import './style/swiper.min.css'
 
 
 if ('addEventListener' in document) {
+  console.log("as")
   document.addEventListener('DOMContentLoaded', function() {
     FastClick.attach(document.body);
   }, false);
 }
+
 
 window.onload=function () {
     document.addEventListener('touchstart',function (event) {
         if(event.touches.length>1){
             event.preventDefault();
         }
-    },{passive:true})
+    })
     var lastTouchEnd=0;
     document.addEventListener('touchend',function (event) {
         var now=(new Date()).getTime();
@@ -30,7 +32,6 @@ window.onload=function () {
         lastTouchEnd=now;
     },false)
 }
-
 new Vue({
   el: '#app',
   router,

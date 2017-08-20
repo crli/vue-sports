@@ -73,11 +73,11 @@
     padding: 0 0.266667rem;
   }
   .title{
-    @include font-dpr(17px);
+    font-size:17px; /*px*/
     font-weight: bold;
   }
   .sourcetime{
-    @include font-dpr(12px);
+    font-size:12px; /*px*/
     color: #666;
     margin: 0.266667rem 0;
     .source{
@@ -87,7 +87,7 @@
   .content{
     padding: 0 0.133333rem;
     margin:0 0.066667rem;
-    @include font-dpr(15px);
+    font-size:15px; /*px*/
     color:#666;
     line-height:1.6;
   }

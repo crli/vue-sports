@@ -41,7 +41,7 @@
       i{
         color:#fff;
         @include center;
-        @include font-dpr(16px);
+        font-size:16px; /*px*/;
       }
     }
     .head-title{
@@ -50,7 +50,7 @@
       text-align: center;
       color:#fff;
       @include ellipsis(1);
-      @include font-dpr(16px);
+      font-size:16px; /*px*/;
     }
   }
 </style>

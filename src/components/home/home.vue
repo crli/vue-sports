@@ -142,7 +142,7 @@ export default {
   width: 100%;
 }
 .swiper-wrap {
-  height: 4.8rem;
+  height: 360px;
   width: 100%;
   position: relative;
 
@@ -154,7 +154,7 @@ export default {
       position: absolute;
       bottom: 0;
       left: 0.266667rem;
-      @include font-dpr(16px)
+      font-size:16px; /*px*/
       color: #fff;
   }
 }
@@ -174,7 +174,7 @@ export default {
   }
   .title{
     line-height: 0.8rem;
-    @include font-dpr(16px)
+    font-size:16px; /*px*/
   }
 }
 .to-top{

@@ -88,7 +88,7 @@ export default {
       position: absolute;
       bottom: 0;
       left: 0.266667rem;
-      @include font-dpr(16px)
+      font-size:16px; /*px*/
       color: #fff;
   }
 }
@@ -108,7 +108,7 @@ export default {
   }
   .title{
     line-height: 0.8rem;
-    @include font-dpr(16px)
+    font-size:16px; /*px*/
   }
 }
 .newsitem {
@@ -133,25 +133,25 @@ export default {
   .cont{
     flex: 1;
     position: relative;
-    @include font-dpr(14px);
+    font-size:14px; /*px*/;
   }
   .commentnum{
     position: absolute;
     bottom: 0;
     right: 0;
-    @include font-dpr(12px);
+    font-size:16px; /*px*/;
   }
   .time{
     position: absolute;
     bottom: 0;
     left: 0;
-    @include font-dpr(12px);
+    font-size:16px; /*px*/;
   }
   .subtopic{
     position: absolute;
     bottom: 0;
     left: 0;
-    @include font-dpr(12px);
+    font-size:16px; /*px*/;
     color: #fff;
     padding: 0.08rem 0.133333rem;
     background: red;
@@ -162,7 +162,7 @@ export default {
   position: relative;
   border-bottom: 1px solid #eee;
   padding: 0px 0.4rem 0.533333rem;
-  @include font-dpr(16px);
+  font-size:16px; /*px*/;
   .title{
     text-align: center;
     line-height: 0.666667rem;
@@ -180,7 +180,7 @@ export default {
     position: absolute;
     bottom: 0;
     right: 0.4rem;
-    @include font-dpr(12px);
+    font-size:12px; /*px*/;
   }
 }
 
@@ -188,7 +188,7 @@ export default {
   padding: 0.4rem;
   position: relative;
   .title{
-    @include font-dpr(16px);
+    font-size:16px; /*px*/;
     margin-bottom: 0.4rem
   }
   .img{
@@ -199,7 +199,7 @@ export default {
     position: absolute;
     bottom: 0;
     right: 0.4rem;
-    @include font-dpr(12px);
+    font-size:16px; /*px*/;
   }
 }
 .itemtitle{
