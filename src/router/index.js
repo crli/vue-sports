@@ -26,12 +26,7 @@ const routes = [
         {
           path: 'carousel',
           component: carousel,
-          children:[
-          {
-            path: 'comment',
-            component: comment,
-          }
-          ]
+
         },
         {
           path: 'article',
@@ -61,6 +56,10 @@ const routes = [
         }
         ]
       },
+      {
+        path: '/comment',
+        component: comment,
+      }
       ]
     }
 ];

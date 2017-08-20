@@ -93,12 +93,7 @@
       this.description = this.slides[index].description
     },
     toComment(){
-      if(this.$route.path.indexOf("home")>0){
-        this.$router.push('/home/carousel/comment?title='+this.title+'&url='+this.commentsUrl)
-      }else{
-        this.$router.push('/topic/carousel/comment?title='+this.title+'&url='+this.commentsUrl)
-      }
-
+      this.$router.push('/comment?title='+this.title+'&url='+this.commentsUrl)
     },
   },
   components:{swiper, swiperSlide,headTop},

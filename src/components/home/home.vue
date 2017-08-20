@@ -31,7 +31,7 @@
     <transition name="backtop">
       <div class="to-top" @click="backTop" v-if="showBackStatus"></div>
     </transition>
-<transition name="router-slide">
+    <transition name="router-slide">
       <router-view></router-view>
     </transition>
 
@@ -72,7 +72,6 @@ export default {
   },
   created(){
     this.init();
-    console.log(window.document.documentElement.getAttribute('data-dpr'))
   },
   mounted(){
     showBack(status => {

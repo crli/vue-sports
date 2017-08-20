@@ -10,7 +10,6 @@ import './style/swiper.min.css'
 
 
 if ('addEventListener' in document) {
-  console.log("as")
   document.addEventListener('DOMContentLoaded', function() {
     FastClick.attach(document.body);
   }, false);
