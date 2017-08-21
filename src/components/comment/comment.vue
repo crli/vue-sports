@@ -1,56 +1,39 @@
 <template>
   <div class="comment">
-    <headTop :headTitle="titleName" class="zindex3"></headTop>
-    <div class="box">
 
-      <!-- <section v-if="hotcomment.length">
-        <div class="hot">热门评论</div>
-        <div class="comment-item" v-for="item in hotcomment">
-          <div class="user">{{item.ip_from ? item.ip_from : item.client_ip}}<span>{{item.uname}}</span></div>
-          <div class="contant">
-            <div class="cont">{{item.comment_contents}}</div>
-            <div class="parent" v-if="item.parent.length">
-              <span class="parent-sub">--原评论：</span>{{item.parent[0].comment_contents}}
-            </div>
-          </div>
-          <div class="other">
-            <div class="time">{{item.comment_date}}</div>
-            <div class="uptimes"bindtap='upComment'>顶{{item.uptimes}}</div>
+    <section class="hot-box">
+      <div class="hot" v-if="hotcomment.length">热门评论</div>
+      <div class="comment-item" v-for="item in hotcomment">
+        <div class="user">{{item.ip_from ? item.ip_from : item.client_ip}}<span>{{item.uname}}</span></div>
+        <div class="contant">
+          <div class="cont">{{item.comment_contents}}</div>
+          <div class="parent" v-if="item.parent.length">
+            <span class="parent-sub">--原评论：</span>{{item.parent[0].comment_contents}}
           </div>
         </div>
-      </section> -->
+        <div class="other">
+          <div class="time">{{item.comment_date}}</div>
+          <div class="uptimes"bindtap='upComment'>顶{{item.uptimes}}</div>
+        </div>
+      </div>
+    </section>
 
-      <section v-if="newcomment.length">
-        <!-- <div class="hot">最新评论</div> -->
-        <section class="project-list1"  v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="20">
-          <!-- <commentlist
-          :newcomment = "newcomment">
-          </commentlist> -->
-          <div class="comment-item"v-for="item in newcomment">
-            <div class="user">{{item.ip_from ? item.ip_from : item.client_ip}}<span>{{item.uname}}</span></div>
-            <div class="contant">
-              <div class="cont">{{item.comment_contents}}</div>
-              <div class="parent" v-if="item.parent.length">
-                <span class="parent-sub">--原评论：</span>{{item.parent[0].comment_contents}}
-              </div>
-            </div>
-            <div class="other">
-              <div class="time">{{item.comment_date}}</div>
-              <div class="uptimes">顶{{item.uptimes}}</div>
-            </div>
-          </div>
-        </section>
+    <section class="new-box">
+      <div class="hot" v-if="newcomment.length">最新评论</div>
+      <section class="project-list1"  v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="20">
+        <commentlist
+        :newcomment = "newcomment">
+        </commentlist>
       </section>
+    </section>
 
-      <!-- <section v-else>
-        <div class="hot">暂无内容</div>
-      </section> -->
+    <section v-if="!newcomment.length">
+      <div class="hot">暂无内容</div>
+    </section>
 
-      <loading :loadernone="loadernone"></loading>
+    <loading :loadernone="loadernone"></loading>
 
-    </div>
   </div>
-
 </template>
 
 <script>
@@ -89,31 +72,28 @@
       response = await newcomment(this.page++,this.url);
       this.newcomment = response.data.comments
       this.count = response.data.count
-
+      this.busy = false;
       if(this.count <= 20){
         this.busy = true;
         this.loadernone = true;
         return false
       }
-      this.busy = false;
+
     },
     async loadMore(){
-      console.log(1)
       this.busy = true;
       this.loadernone = false;
       let response = await newcomment(this.page,this.url)
       this.newcomment = [...this.newcomment, ...response.data.comments];
       if (response.data.comments.length < 20) {
         this.loadernone = true;
-        return
+        return false
       }
       this.busy = false;
     }
   },
   directives: {infiniteScroll},
   components:{headTop,commentlist,loading }
-
-
 }
 </script>
 
@@ -121,7 +101,6 @@
 @import '../../style/mixin';
 .comment{
   background-color: #fff;
-  overflow: auto;
   .box{
     width:100%;
     height:100%;

@@ -21,7 +21,7 @@
 export default {
   name: 'commentlist',
   data () {
-    return {
+    return{
 
     }
   },
@@ -41,7 +41,6 @@ export default {
 @import '../../style/mixin';
 .commentlist{
   width:100%;
-  height:auto;
 }
 .comment-item{
     margin-top: 20px;

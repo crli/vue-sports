@@ -31,7 +31,7 @@
     <transition name="backtop">
       <div class="to-top" @click="backTop" v-if="showBackStatus"></div>
     </transition>
-    <transition name="router-slide">
+    <transition :name="transitionName" >
       <router-view></router-view>
     </transition>
 
@@ -128,7 +128,11 @@ export default {
       animate(document.body, {scrollTop: '0'}, 400,'ease-out');
     },
   },
-
+  watch: {
+    '$route' (to, from) {
+      this.transitionName = to.path.indexOf("video")>0 ? 'router-right' : 'router-slide'
+    }
+  },
   directives: {infiniteScroll},
 
   components:{swiper, swiperSlide,newslist,loading}

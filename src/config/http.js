@@ -28,13 +28,13 @@ axios.interceptors.request.use(
 // http response 拦截器
 axios.interceptors.response.use(
     response => {
-      // let timetp = null;
-      // clearTimeout(timetp);
-      // timetp = setTimeout(()=>{
-      //   Indicator.close();
-      //   clearTimeout(timetp);
-      // },500)
-      Indicator.close();
+      let timetp = null;
+      clearTimeout(timetp);
+      timetp = setTimeout(()=>{
+        Indicator.close();
+        clearTimeout(timetp);
+      },500)
+      // Indicator.close();
       return response;
     },
     error => {

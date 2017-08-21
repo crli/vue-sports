@@ -89,7 +89,12 @@ a.router-link-active span{
 .router-slide-enter, .router-slide-leave-active {
     transform: translateX(100%);
 }
-
+.router-right-enter-active, .router-right-leave-active {
+    transition: all .4s;
+}
+.router-right-enter, .router-right-leave-active {
+    transform: translateY(100%);
+}
 .fade-enter-active, .fade-leave-active {
     transition: opacity .5s
 }
@@ -160,4 +165,7 @@ input,input:focus,input:active{user-select: text;}
 }
 .backtop-enter, .backtop-leave-active {
   opacity: 0
+}
+.fff{
+  background: #FFF!important
 }
