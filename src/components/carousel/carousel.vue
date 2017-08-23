@@ -62,9 +62,11 @@
     }
   },
   created(){
-    this.init();
     this.y = document.body.scrollTop
     document.body.setAttribute("class","hid");
+  },
+  mounted(){
+    this.init();
   },
   destroyed(){
     let path = this.$route.path;
@@ -76,7 +78,16 @@
   },
   methods: {
     async init() {
-      let response = await getcarousel(this.$route.query.type);
+      let type = null;
+      if(!this.$route.query.type){
+        let path = this.$route.fullPath;
+        let num = path.indexOf("?")+1;
+        let keyStr = path.substr(num);
+        type = this.GetQueryString(keyStr,'type')
+      }else{
+        type = this.$route.query.type
+      }
+      let response = await getcarousel(type);
 
       let data = response.data.body;
       this.slides = data.slides;
@@ -95,6 +106,11 @@
     toComment(){
       this.$router.push('/comment?title='+this.title+'&url='+this.commentsUrl)
     },
+    GetQueryString(str,name){
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = str.match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+    }
   },
   components:{swiper, swiperSlide,headTop},
 

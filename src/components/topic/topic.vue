@@ -130,8 +130,11 @@
   components:{swiper, swiperSlide,headTop,topiclist},
   watch:{
     '$route' (to, from) {
+      if(to.path == '/topic' && from.path == '/topic/carousel'){
+        this.init()
+      }
       if(to.path == '/topic'){
-       document.body.scrollTop = 0
+       document.body.scrollTop = 0;
       }
     }
   }

@@ -67,7 +67,8 @@ export default {
         autoplayDisableOnInteraction: false,
         notNextTick: true
       },
-      showBackStatus:false
+      showBackStatus:false,
+      transitionName:'router-slide'
     }
   },
   created(){

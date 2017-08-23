@@ -1,38 +1,39 @@
 <template>
   <div class="comment">
-
-    <section class="hot-box">
-      <div class="hot" v-if="hotcomment.length">热门评论</div>
-      <div class="comment-item" v-for="item in hotcomment">
-        <div class="user">{{item.ip_from ? item.ip_from : item.client_ip}}<span>{{item.uname}}</span></div>
-        <div class="contant">
-          <div class="cont">{{item.comment_contents}}</div>
-          <div class="parent" v-if="item.parent.length">
-            <span class="parent-sub">--原评论：</span>{{item.parent[0].comment_contents}}
+    <headTop :headTitle="titleName"></headTop>
+    <div class="box">
+      <section class="hot-box">
+        <div class="hot" v-if="hotcomment.length">热门评论</div>
+        <div class="comment-item" v-for="item in hotcomment">
+          <div class="user">{{item.ip_from ? item.ip_from : item.client_ip}}<span>{{item.uname}}</span></div>
+          <div class="contant">
+            <div class="cont">{{item.comment_contents}}</div>
+            <div class="parent" v-if="item.parent.length">
+              <span class="parent-sub">--原评论：</span>{{item.parent[0].comment_contents}}
+            </div>
+          </div>
+          <div class="other">
+            <div class="time">{{item.comment_date}}</div>
+            <div class="uptimes"bindtap='upComment'>顶{{item.uptimes}}</div>
           </div>
         </div>
-        <div class="other">
-          <div class="time">{{item.comment_date}}</div>
-          <div class="uptimes"bindtap='upComment'>顶{{item.uptimes}}</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="new-box">
-      <div class="hot" v-if="newcomment.length">最新评论</div>
-      <section class="project-list1"  v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="20">
-        <commentlist
-        :newcomment = "newcomment">
-        </commentlist>
       </section>
-    </section>
 
-    <section v-if="!newcomment.length">
-      <div class="hot">暂无内容</div>
-    </section>
+      <section class="new-box">
+        <div class="hot" v-if="newcomment.length">最新评论</div>
+        <section class="project-list1"  v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="20">
+          <commentlist
+          :newcomment = "newcomment">
+          </commentlist>
+        </section>
+      </section>
 
-    <loading :loadernone="loadernone"></loading>
+      <section v-if="!newcomment.length">
+        <div class="hot">暂无内容</div>
+      </section>
 
+      <loading :loadernone="loadernone"></loading>
+    </div>
   </div>
 </template>
 
@@ -104,7 +105,7 @@
   .box{
     width:100%;
     height:100%;
-    overflow: auto;
+
     padding-top: 1.093333rem;
   }
   .hot{
