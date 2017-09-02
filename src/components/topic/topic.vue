@@ -16,7 +16,7 @@
           <swiper :options="swiperOption" class="swiper swiper-wrap">
             <swiper-slide v-for="(ele,i) in item.podItems" :key="i">
               <span class="title">{{ele.title}}</span>
-              <img :src="ele.thumbnail" alt=""  @click="toCarousel(ele.id ? ele.id : ele.links[0].url)"/>
+              <img :src="ele.thumbnail" alt=""  @click="toWhere(ele)"/>
             </swiper-slide>
           </swiper>
         </div>
@@ -121,6 +121,13 @@
 
     toVideo(params){
       this.$router.push('/topic/video?'+params)
+    },
+    toWhere(ele){
+      if(ele.links[0].type === 'slide'){
+        this.toCarousel(ele.links[0].url)
+      }else if(ele.links[0].type === 'video'){
+        this.toVideo(dealurl(ele.mp4))
+      }
     },
     backTop(){
       animate(document.body, {scrollTop: '0'}, 400,'ease-out');

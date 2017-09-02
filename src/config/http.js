@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Indicator } from 'mint-ui';
 import { Toast } from 'mint-ui';
 axios.defaults.timeout = 30000;
-
+axios.defaults.headers.common['Content-Type'] = 'application/json;charset=UTF-8'
 // http request 拦截器
 axios.interceptors.request.use(
     config => {

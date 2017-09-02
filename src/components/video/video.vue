@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel">
+  <div class="videowrap">
     <headTop :headTitle="titleName"></headTop>
     <div class="box">
       <video :src="type" controls="controls" class="video"></video>
@@ -48,13 +48,13 @@
 <style scoped lang="scss">
 @import '../../style/mixin';
 
-.carousel{
+.videowrap{
   position: fixed;
   top: 0px;
   left: 0px;
   right: 0px;
   bottom: 0px;
-  z-index: 0;
+  z-index: 2;
   background-color: #000;
   overflow: auto;
   .box{

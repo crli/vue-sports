@@ -2,6 +2,12 @@
 
 > A Vue.js project
 
+仿凤凰新闻体育板块+某吧赛事数据
+
+<p align="center">
+  <img src="./src/assets/img/lx.gif" alt="凤凰新闻体育板块" >
+</p>
+
 ## Build Setup
 
 ``` bash
@@ -18,4 +24,6 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# 目标功能
+- [x] 体育新闻 -- 完成
+- [ ] 比赛数据 -- 未完成
