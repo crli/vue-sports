@@ -2,7 +2,9 @@
 
 > A Vue.js project
 
-仿凤凰新闻体育板块+某吧赛事数据
+仿凤凰新闻体育板块+赛事数据
+
+体育新闻板块已经完成(暂时未用到vuex) ，正在弄体育赛事数据接口(计划加入vuex)
 
 <p align="center">
   <img src="./src/assets/img/lx.gif" alt="凤凰新闻体育板块" >
