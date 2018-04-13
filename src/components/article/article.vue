@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap":class="this.$route.path.indexOf('topic')>0?'zindex1':''">
+  <div class="wrap" :class="this.$route.path.indexOf('topic')>0?'zindex1':''">
     <headTop :headTitle="titleName" class="zindex1"></headTop>
     <div class="box">
       <div class="article">

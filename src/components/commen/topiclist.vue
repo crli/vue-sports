@@ -1,9 +1,9 @@
 <template>
   <section class="topiclist" :id="'list-'+index">
   <span class="itemtitle" :id="'item-'+index">{{topiclist.title}}</span>
-    <div class="project" v-for="(item,index) in topiclist.podItems" >
+    <div class="project" v-for="(item,index) in topiclist.podItems" :key="index">
 
-      <div class="newsitem" v-if="item.links[0].type == 'doc'" @click='toArticle(item.id ? item.id : item.links[0].url)'>
+      <div class="newsitem" v-if="item.link.type == 'doc'" @click='toArticle(item.id ? item.id : item.link.url)'>
         <img v-if="item.thumbnail" :src="item.thumbnail" class="img"/>
         <div v-else class="none">暂无图片</div>
         <div class="cont">
@@ -13,15 +13,16 @@
         </div>
       </div>
 
-      <div class="newslide" v-else-if="item.links[0].type == 'slide'" @click='toCarousel(item.id ? item.id : item.links[0].url)'>
+      <div class="newslide" v-else-if="item.link.type == 'slide'" @click='toCarousel(item.id ? item.id : item.link.url)'>
         <div class="title">{{item.title}}</div>
         <div class="imgbox">
-          <img v-for="img in item.thumbnails" class="img" :src="img"/>
+          <!-- <img v-for="(img,index) in item.thumbnails" class="img ss" :src="img" :key="index" v-if="Array.isArray(item.thumbnail)"/> -->
+          <img class="img dd" :src="item.thumbnail" />
         </div>
         <span class="commentnum">{{item.commentCount}}</span>
       </div>
 
-      <div class="newsitem" v-if="item.links[0].type == 'video'" @click='toVideo(item.mp4 ? item.mp4 : item.links[0].url)'>
+      <div class="newsitem" v-if="item.link.type == 'video'" @click='toVideo(item.mp4 ? item.mp4 : item.link.url)'>
         <div class="video">
           <img v-if="item.thumbnail" :src="item.thumbnail" class="img video"/>
         </div>
@@ -118,11 +119,11 @@ export default {
   padding: 0.4rem;
   position: relative;
   .img {
-    @include wh(2.64rem,1.88rem)
+    @include wh(2.64rem,1.88rem);
     margin-right: 0.2rem;
   }
   .none {
-    @include wh(2.64rem,1.88rem)
+    @include wh(2.64rem,1.88rem);
     margin-right: 0.2rem;
     text-align: center;
     line-height: 1.866667rem;

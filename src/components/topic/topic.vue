@@ -1,8 +1,8 @@
 <template>
   <div class="topic" >
     <headTop :headTitle="titleName" class="zindex1"></headTop>
-    <div class="box"id="topicid">
-      <div v-for="(item ,index) in subjects">
+    <div class="box" id="topicid">
+      <div v-for="(item ,index) in subjects" :key="index">
 
         <div class="mutiTitle" v-if="item.view=='multiTitle'">
           <img :src="item.content.bgImage"/>
@@ -31,7 +31,7 @@
           </topiclist>
         </div>
         <div class="subtitle" v-if="index == 2" >
-          <a href="javascript:;" class="subnav" v-for="ele in havetitle" @click="toitem('item-'+ele.i)">{{ele.title}}</a>
+          <a href="javascript:;" class="subnav" v-for="(ele,ind) in havetitle" :key="ind" @click="toitem('item-'+ele.i)">{{ele.title}}</a>
         </div>
 
       </div>
@@ -104,7 +104,7 @@
       if(eleHeight<clientHeight){
         top = top - (clientHeight - eleHeight)
       }
-      animate(document.body, {scrollTop: top}, 300,'ease-out');
+      animate(document.documentElement, {scrollTop: top}, 300,'ease-out');
     },
 
     toCarousel(params){
@@ -123,9 +123,9 @@
       this.$router.push('/topic/video?'+params)
     },
     toWhere(ele){
-      if(ele.links[0].type === 'slide'){
-        this.toCarousel(ele.links[0].url)
-      }else if(ele.links[0].type === 'video'){
+      if(ele.link.type === 'slide'){
+        this.toCarousel(ele.link.url)
+      }else if(ele.link.type === 'video'){
         this.toVideo(dealurl(ele.mp4))
       }
     },

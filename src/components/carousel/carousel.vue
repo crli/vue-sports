@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel":class="this.$route.path.indexOf('topic')>0?'zindex1':''">
+  <div class="carousel" :class="this.$route.path.indexOf('topic')>0?'zindex1':''">
     <headTop :headTitle="titleName"></headTop>
     <div class="box">
 
@@ -149,7 +149,7 @@
         border: 1px solid #fff;
         background: #000;
         border-radius: 0.133333rem 0.133333rem 0 0.133333rem;
-        @include wh(0.746667rem,0.426667rem)
+        @include wh(0.746667rem,0.426667rem);
         position: relative;
         &::before{
           position: absolute;

@@ -1,6 +1,6 @@
 <template>
   <section class="newslist">
-    <div class="project" v-for="(item,index) in newslist" >
+    <div class="project" v-for="(item,index) in newslist" :key="index" >
         <div class="newsitem" v-if="item.type=='doc'" @click='toArticle(item.id)'>
           <img v-if="item.thumbnail" :src="item.thumbnail" class="img"/>
           <div v-else class="none">暂无图片</div>
@@ -22,7 +22,7 @@
         <div class="newslide" v-else-if="item.type=='slide'" @click='toCarousel(item.id)'>
           <div class="title">{{item.title}}</div>
           <div class="imgbox">
-            <img v-for="img in item.style.images" class="img" :src="img"/>
+            <img v-for="(img,index) in item.style.images" class="img" :src="img" :key="index"/>
           </div>
           <span class="commentnum">{{item.commentsall}}</span>
         </div>
@@ -122,11 +122,11 @@ export default {
   padding: 0.4rem;
   position: relative;
   .img {
-    @include wh(2.64rem,1.88rem)
+    @include wh(2.64rem,1.88rem);
     margin-right: 0.2rem;
   }
   .none {
-    @include wh(2.64rem,1.88rem)
+    @include wh(2.64rem,1.88rem);
     margin-right: 0.2rem;
     text-align: center;
     line-height: 1.866667rem;

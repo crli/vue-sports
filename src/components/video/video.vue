@@ -12,7 +12,7 @@
   import headTop from '@/components/commen/head'
   import {videoitem} from '@/service/getData'
   export default {
-  name: 'article',
+  name: 'video',
   data () {
     return {
       titleName:'视频',

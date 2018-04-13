@@ -8,7 +8,7 @@
 
 <script>
     export default {
-      name:'head',
+      name:'headtop',
       data () {
         return {
         }

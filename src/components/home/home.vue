@@ -10,7 +10,7 @@
     </swiper>
 
     <section class="topicbox">
-      <div class="category" v-for="(item,index) in topic.item" @click="toTopic(item.id)">
+      <div class="category" v-for="(item,index) in topic.item" @click="toTopic(item.id)" :key="index">
         <img :src="item.thumbnail" />
         <span class="title">{{item.title}}</span>
       </div>

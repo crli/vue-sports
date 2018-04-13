@@ -4,7 +4,7 @@
     <div class="box">
       <section class="hot-box">
         <div class="hot" v-if="hotcomment.length">热门评论</div>
-        <div class="comment-item" v-for="item in hotcomment">
+        <div class="comment-item" v-for="(item,index) in hotcomment" :key="index">
           <div class="user">{{item.ip_from ? item.ip_from : item.client_ip}}<span>{{item.uname}}</span></div>
           <div class="contant">
             <div class="cont">{{item.comment_contents}}</div>
@@ -14,7 +14,7 @@
           </div>
           <div class="other">
             <div class="time">{{item.comment_date}}</div>
-            <div class="uptimes"bindtap='upComment'>顶{{item.uptimes}}</div>
+            <div class="uptimes">顶{{item.uptimes}}</div>
           </div>
         </div>
       </section>

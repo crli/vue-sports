@@ -1,6 +1,6 @@
 <template>
 <div class="commentlist">
-  <div class="comment-item"v-for="item in newcomment">
+  <div class="comment-item" v-for="(item,index) in newcomment" :key="index">
     <div class="user">{{item.ip_from ? item.ip_from : item.client_ip}}<span>{{item.uname}}</span></div>
     <div class="contant">
       <div class="cont">{{item.comment_contents}}</div>
